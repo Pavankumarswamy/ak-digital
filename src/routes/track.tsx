@@ -56,6 +56,33 @@ function TrackPage() {
     }
   }, [searchParams.id]);
 
+  const forceDownload = async (e: React.MouseEvent, url: string) => {
+    e.preventDefault();
+    try {
+      if (url.includes('cloudinary.com') && !url.includes('fl_attachment')) {
+        const parts = url.split('/upload/');
+        if (parts.length === 2) {
+          const downloadUrl = `${parts[0]}/upload/fl_attachment/${parts[1]}`;
+          window.location.href = downloadUrl;
+          return;
+        }
+      }
+      const response = await fetch(url);
+      const blob = await response.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = blobUrl;
+      const filename = url.split('/').pop()?.split('?')[0] || 'document';
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(blobUrl);
+    } catch (err) {
+      window.open(url, '_blank');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background py-24 md:py-32 relative overflow-hidden">
       <div className="floating-orb h-72 w-72 bg-[oklch(0.55_0.22_230)] -top-10 -left-10" />
@@ -181,12 +208,12 @@ function TrackPage() {
                         <div className="bg-white/5 border border-white/10 rounded-xl p-4">
                           <p className="text-xs text-muted-foreground mb-3 uppercase tracking-wider font-semibold">Attached Document</p>
                           {result.attachedMedia.match(/\.(jpeg|jpg|gif|png|webp|bmp|svg)$/i) ? (
-                            <a href={result.attachedMedia} target="_blank" rel="noopener noreferrer" className="block w-full max-w-sm overflow-hidden rounded-lg border border-white/10 hover:border-neon transition-colors group">
+                            <a href={result.attachedMedia} onClick={(e) => forceDownload(e, result.attachedMedia)} className="block w-full max-w-sm overflow-hidden rounded-lg border border-white/10 hover:border-neon transition-colors group cursor-pointer">
                               <img src={result.attachedMedia} alt="Admin Attachment" className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300" />
                             </a>
                           ) : (
-                            <a href={result.attachedMedia} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-neon hover:underline bg-[oklch(0.85_0.18_210/0.1)] px-4 py-2.5 rounded-lg border border-[oklch(0.85_0.18_210/0.3)] hover:bg-[oklch(0.85_0.18_210/0.2)] transition-all hover:shadow-[0_0_15px_oklch(0.85_0.18_210/0.2)]">
-                              <FileText className="h-4 w-4" /> Download / View Document
+                            <a href={result.attachedMedia} onClick={(e) => forceDownload(e, result.attachedMedia)} className="inline-flex items-center gap-2 text-sm font-medium text-neon hover:underline bg-[oklch(0.85_0.18_210/0.1)] px-4 py-2.5 rounded-lg border border-[oklch(0.85_0.18_210/0.3)] hover:bg-[oklch(0.85_0.18_210/0.2)] transition-all hover:shadow-[0_0_15px_oklch(0.85_0.18_210/0.2)] cursor-pointer">
+                              <FileText className="h-4 w-4" /> Download Document
                             </a>
                           )}
                         </div>
