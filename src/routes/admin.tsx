@@ -149,7 +149,7 @@ function LoginView({ onLoginSuccess }: { onLoginSuccess: () => void }) {
               {err && (
                 <p className="text-xs text-destructive">{err}</p>
               )}
-              <button type="submit" disabled={loading} className="btn-neon w-full">
+              <button type="submit" disabled={loading} className="btn-neon !py-2 w-full">
                 {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Lock className="h-4 w-4" />}
                 Sign In
               </button>
@@ -388,8 +388,8 @@ function ManageServices() {
             <p className="text-xs text-muted-foreground mt-0.5">Click a card to open the AI Form Builder for that service.</p>
           </div>
           <div className="flex items-center gap-3">
-            <button onClick={handleSeed} disabled={loading} className="btn-ghost-neon !py-1.5 !px-3 text-xs">Seed Static</button>
-            <button onClick={openAddDetails} className="btn-neon !py-1.5 !px-4 text-sm flex items-center gap-1.5">
+            <button onClick={handleSeed} disabled={loading} className="btn-ghost-neon !py-2 !px-3 text-xs">Seed Static</button>
+            <button onClick={openAddDetails} className="btn-neon !py-2 !px-4 text-sm flex items-center gap-1.5">
               <Plus className="h-4 w-4" /> Add Service
             </button>
           </div>
@@ -439,13 +439,13 @@ function ManageServices() {
                   <div className="flex justify-end gap-2 pt-2 border-t border-white/10">
                     <button
                       onClick={e => { e.stopPropagation(); openEditDetails(s); }}
-                      className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs text-white/70 hover:text-white hover:bg-white/10 border border-white/10 transition-all"
+                      className="flex items-center gap-1 px-2.5 py-2 rounded-lg text-xs text-white/70 hover:text-white hover:bg-white/10 border border-white/10 transition-all"
                     >
                       <Edit2 className="h-3.5 w-3.5" /> Details
                     </button>
                     <button
                       onClick={e => { e.stopPropagation(); handleDelete(s.id); }}
-                      className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs text-white/70 hover:text-destructive hover:bg-destructive/10 border border-white/10 transition-all"
+                      className="flex items-center gap-1 px-2.5 py-2 rounded-lg text-xs text-white/70 hover:text-destructive hover:bg-destructive/10 border border-white/10 transition-all"
                     >
                       <Trash2 className="h-3.5 w-3.5" />
                     </button>
@@ -493,10 +493,10 @@ function ManageServices() {
                   placeholder="Price"
                 />
               </div>
-              <button onClick={() => setCustomFields(getDefaultCustomFields())} className="text-xs text-white/70 hover:text-white border border-white/10 px-3 py-1.5 rounded-lg transition-colors">
+              <button onClick={() => setCustomFields(getDefaultCustomFields())} className="text-xs text-white/70 hover:text-white border border-white/10 px-3 py-2 rounded-lg transition-colors">
                 Reset Defaults
               </button>
-              <button onClick={saveFormLayout} disabled={savingFields} className="btn-neon !py-1.5 !px-5 text-sm flex items-center gap-2">
+              <button onClick={saveFormLayout} disabled={savingFields} className="btn-neon !py-2 !px-5 text-sm flex items-center gap-2">
                 {savingFields ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
                 Save Form Layout
               </button>
@@ -537,7 +537,7 @@ function ManageServices() {
                   <span className="text-sm font-semibold">Form Fields</span>
                   <span className="text-xs text-white/60">({customFields.length} fields)</span>
                 </div>
-                <button onClick={openAddField} className="flex items-center gap-1.5 text-xs btn-ghost-neon !py-1 !px-2.5">
+                <button onClick={openAddField} className="flex items-center gap-1.5 text-xs btn-ghost-neon !py-2 !px-2.5">
                   <Plus className="h-3.5 w-3.5" /> Add Field
                 </button>
               </div>
@@ -919,7 +919,7 @@ function ManageBlogs() {
           </div>
 
           <div className="md:col-span-2 pt-4 border-t border-white/10">
-            <button type="submit" disabled={loading} className="btn-neon w-full">
+            <button type="submit" disabled={loading} className="btn-neon !py-2 w-full">
               {loading ? "Saving..." : (editingId ? "Update Blog" : "Add Blog")}
             </button>
           </div>
@@ -929,7 +929,7 @@ function ManageBlogs() {
       <div className="glass rounded-2xl p-6">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold">Existing Blogs</h3>
-          <button onClick={handleSeed} disabled={loading} className="btn-ghost-neon !py-1 !px-3 text-xs">
+          <button onClick={handleSeed} disabled={loading} className="btn-ghost-neon !py-2 !px-3 text-xs">
             Seed Old Static Blogs
           </button>
         </div>
@@ -1061,7 +1061,7 @@ function ManageTestimonials() {
             </div>
           </div>
           <div className="md:col-span-2 pt-4 border-t border-white/10">
-            <button type="submit" disabled={loading} className="btn-neon w-full">
+            <button type="submit" disabled={loading} className="btn-neon !py-2 w-full">
               {loading ? "Saving..." : (editingId ? "Update Testimonial" : "Add Testimonial")}
             </button>
           </div>
@@ -1116,13 +1116,13 @@ function FilePreviewModal({ url, onClose }: { url: string | null; onClose: () =>
       >
         <div className="flex justify-between items-center p-3 border-b border-slate-200 bg-slate-50">
           <div className="flex gap-2">
-            <button onClick={() => setScale(s => s + 0.2)} className="px-3 py-1.5 bg-white border border-slate-200 hover:bg-slate-100 rounded text-slate-700 font-bold text-xs flex items-center transition-colors shadow-sm">
+            <button onClick={() => setScale(s => s + 0.2)} className="px-3 py-2 bg-white border border-slate-200 hover:bg-slate-100 rounded text-slate-700 font-bold text-xs flex items-center transition-colors shadow-sm">
               Zoom In +
             </button>
-            <button onClick={() => setScale(s => Math.max(0.2, s - 0.2))} className="px-3 py-1.5 bg-white border border-slate-200 hover:bg-slate-100 rounded text-slate-700 font-bold text-xs flex items-center transition-colors shadow-sm">
+            <button onClick={() => setScale(s => Math.max(0.2, s - 0.2))} className="px-3 py-2 bg-white border border-slate-200 hover:bg-slate-100 rounded text-slate-700 font-bold text-xs flex items-center transition-colors shadow-sm">
               Zoom Out -
             </button>
-            <button onClick={() => setScale(1)} className="px-3 py-1.5 bg-white border border-slate-200 hover:bg-slate-100 rounded text-slate-700 font-bold text-xs flex items-center transition-colors shadow-sm">
+            <button onClick={() => setScale(1)} className="px-3 py-2 bg-white border border-slate-200 hover:bg-slate-100 rounded text-slate-700 font-bold text-xs flex items-center transition-colors shadow-sm">
               Reset
             </button>
           </div>
@@ -1290,10 +1290,10 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
 
         {/* Footer/Logout in sidebar */}
         <div className="p-4 border-t border-white/10 space-y-3">
-          <Link to="/" className="w-full btn-ghost-neon !py-2.5 !px-3 text-xs justify-center flex items-center gap-2 border border-white/5 hover:border-white/10">
+          <Link to="/" className="w-full btn-ghost-neon !py-2 !px-3 text-xs justify-center flex items-center gap-2 border border-white/5 hover:border-white/10">
             View Site
           </Link>
-          <button onClick={onLogout} className="w-full rounded-lg bg-destructive/10 text-destructive hover:bg-destructive/20 border border-destructive/20 py-2.5 px-3 text-xs justify-center flex items-center gap-2 font-medium transition-colors">
+          <button onClick={onLogout} className="w-full rounded-lg bg-destructive/10 text-destructive hover:bg-destructive/20 border border-destructive/20 py-2 px-3 text-xs justify-center flex items-center gap-2 font-medium transition-colors">
             <LogOut className="h-3.5 w-3.5" /> Logout
           </button>
         </div>
@@ -1580,10 +1580,10 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                                 </button>
                               )}
                               <div className="flex gap-2">
-                                <button onClick={() => setPreviewUrl(v as string)} className="px-3 py-1.5 bg-blue-500 hover:bg-blue-600 text-white rounded text-xs font-medium flex-1 transition-colors flex items-center justify-center gap-1 shadow-sm">
+                                <button onClick={() => setPreviewUrl(v as string)} className="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded text-xs font-medium flex-1 transition-colors flex items-center justify-center gap-1 shadow-sm">
                                   Open
                                 </button>
-                                <a href={downloadUrl} download target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs font-medium flex-1 transition-colors flex items-center justify-center gap-1 shadow-sm">
+                                <a href={downloadUrl} download target="_blank" rel="noopener noreferrer" className="px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs font-medium flex-1 transition-colors flex items-center justify-center gap-1 shadow-sm">
                                   Download
                                 </a>
                               </div>
@@ -1635,7 +1635,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                       <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Contact User</span>
                       <a 
                         href={`mailto:${selectedSubmission.userEmail}?subject=${encodeURIComponent(`Update on your ${selectedSubmission.service} Application`)}`}
-                        className="w-full text-sm font-bold px-4 py-2.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors flex items-center justify-center gap-2 shadow-sm"
+                        className="w-full text-sm font-bold px-4 py-2 rounded-lg border border-blue-200 bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors flex items-center justify-center gap-2 shadow-sm"
                       >
                         <Send className="h-4 w-4" /> Send Email
                       </a>
@@ -1661,7 +1661,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                       </div>
                     )}
                     
-                    <label className={`relative flex items-center justify-center gap-2 w-full py-2.5 px-3 rounded-lg border border-dashed border-slate-300 bg-slate-50 hover:bg-slate-100 transition-colors cursor-pointer text-sm font-medium ${uploadingMediaId === selectedSubmission.id ? 'opacity-50 pointer-events-none' : 'text-slate-600 hover:text-slate-900'}`}>
+                    <label className={`relative flex items-center justify-center gap-2 w-full py-2 px-3 rounded-lg border border-dashed border-slate-300 bg-slate-50 hover:bg-slate-100 transition-colors cursor-pointer text-sm font-medium ${uploadingMediaId === selectedSubmission.id ? 'opacity-50 pointer-events-none' : 'text-slate-600 hover:text-slate-900'}`}>
                       {uploadingMediaId === selectedSubmission.id ? (
                         <><Loader2 className="h-4 w-4 animate-spin" /> Uploading...</>
                       ) : (
