@@ -159,7 +159,9 @@ function TrackPage() {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                {/* Left Side: Progress & Admin Updates */}
+                <div className="flex flex-col gap-10">
                 {/* Top: Progress */}
                 <div className="relative py-4">
                   {/* Connecting Line */}
@@ -218,6 +220,46 @@ function TrackPage() {
                           )}
                         </div>
                       )}
+                    </div>
+                  )}
+                </div>
+                
+                {/* Right Side: Submitted Data */}
+                <div>
+                  <h4 className="text-sm font-semibold text-neon flex items-center gap-2 mb-6">
+                    <FileText className="h-4 w-4" /> Submitted Details
+                  </h4>
+                  {result.data ? (
+                    <div className="bg-white/5 border border-white/10 rounded-xl p-5 grid gap-5 sm:grid-cols-2">
+                      {Object.entries(result.data).map(([k, v]) => {
+                        const isUrl = typeof v === 'string' && v.startsWith('http');
+                        const isImage = isUrl && /\.(jpeg|jpg|gif|png|webp|bmp|svg)$/i.test(v as string);
+                        
+                        return (
+                          <div key={k} className="flex flex-col gap-1.5 bg-black/20 p-3 rounded-lg border border-white/5">
+                            <span className="text-[10px] text-white/60 uppercase font-bold tracking-wider truncate">{k}</span>
+                            {isUrl ? (
+                              <div className="flex flex-col gap-2 mt-1">
+                                {isImage && (
+                                  <a href={v as string} target="_blank" rel="noreferrer" className="block overflow-hidden rounded-md border border-white/10 w-full cursor-pointer">
+                                    <img src={v as string} alt={k} className="h-24 w-full object-cover hover:scale-105 transition-transform duration-300" />
+                                  </a>
+                                )}
+                                <a href={v as string} onClick={(e) => forceDownload(e, v as string)} className="text-xs text-neon hover:text-white transition-colors flex items-center gap-1">
+                                  <Download className="h-3 w-3" /> Download Document
+                                </a>
+                              </div>
+                            ) : (
+                              <span className="text-sm text-white font-medium whitespace-pre-wrap">{v as React.ReactNode}</span>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div className="text-sm text-white/50 p-6 bg-white/5 rounded-xl border border-white/10 text-center flex flex-col items-center justify-center">
+                      <FileText className="h-8 w-8 mb-2 opacity-20" />
+                      No details available
                     </div>
                   )}
                 </div>
