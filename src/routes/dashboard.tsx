@@ -109,16 +109,16 @@ function DashboardPage() {
               </Link>
             </div>
           ) : (
-            <ul className="divide-y divide-white/5">
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
               {subs.map((s) => (
-                <li key={s.id} className="px-6 py-6 hover:bg-white/[0.02] transition-colors group cursor-pointer" onClick={() => navigate({ to: '/track', search: { id: s.id } as any })}>
-                  <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                <li key={s.id} className="relative p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[oklch(0.85_0.18_210/0.4)] transition-all duration-300 hover:shadow-[0_0_20px_oklch(0.85_0.18_210/0.15)] hover:-translate-y-1 group cursor-pointer" onClick={() => navigate({ to: '/track', search: { id: s.id } as any })}>
+                  <div className="flex flex-col gap-4">
                     <div className="flex-1 min-w-0">
                       <div className="flex flex-wrap items-center gap-3 mb-4">
                         <span className="rounded-md bg-gradient-to-r from-[oklch(0.85_0.18_210/0.2)] to-[oklch(0.55_0.2_265/0.2)] border border-[oklch(0.85_0.18_210/0.3)] px-3 py-1.5 text-xs font-bold text-neon tracking-wide shadow-[0_0_10px_oklch(0.85_0.18_210/0.1)]">
                           {s.service}
                         </span>
-                        <span className="text-xs text-muted-foreground bg-black/20 px-2 py-1 rounded-md border border-white/5">
+                        <span className="text-xs text-white/70 bg-black/30 px-2.5 py-1 rounded-md border border-white/10">
                           {new Date(s.createdAt).toLocaleString()}
                         </span>
                         <span className={`text-[10px] font-bold px-2.5 py-1 rounded-md border uppercase tracking-wider ${
@@ -133,16 +133,16 @@ function DashboardPage() {
                         {Object.entries(s.data || {}).map(([k, v]) => {
                           if (k.toLowerCase().includes('file') || k.toLowerCase().includes('image') || (typeof v === 'string' && v.startsWith('http'))) {
                              return (
-                               <div key={k} className="flex flex-col gap-1 overflow-hidden">
-                                 <span className="text-muted-foreground/70 uppercase text-[10px] font-bold tracking-wider truncate">{k}</span>
-                                 <a href={v as string} target="_blank" rel="noreferrer" className="text-neon text-xs hover:underline truncate" onClick={(e) => e.stopPropagation()}>View Document ↗</a>
+                               <div key={k} className="flex flex-col gap-1 overflow-hidden bg-black/20 p-2.5 rounded-lg border border-white/5">
+                                 <span className="text-white/60 uppercase text-[10px] font-bold tracking-wider truncate">{k}</span>
+                                 <a href={v as string} target="_blank" rel="noreferrer" className="text-neon text-xs hover:text-white transition-colors truncate" onClick={(e) => e.stopPropagation()}>View Document ↗</a>
                                </div>
                              );
                           }
                           return (
-                            <div key={k} className="flex flex-col gap-1 overflow-hidden">
-                              <span className="text-muted-foreground/70 uppercase text-[10px] font-bold tracking-wider truncate">{k}</span>
-                              <span className="text-foreground/90 font-medium truncate" title={v as string}>{v as React.ReactNode}</span>
+                            <div key={k} className="flex flex-col gap-1 overflow-hidden bg-black/20 p-2.5 rounded-lg border border-white/5">
+                              <span className="text-white/60 uppercase text-[10px] font-bold tracking-wider truncate">{k}</span>
+                              <span className="text-white font-medium truncate" title={v as string}>{v as React.ReactNode}</span>
                             </div>
                           );
                         })}
