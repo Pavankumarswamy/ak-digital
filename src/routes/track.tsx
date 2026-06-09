@@ -223,9 +223,10 @@ function TrackPage() {
                     </div>
                   )}
                 </div>
+              </div>
                 
-                {/* Right Side: Submitted Data */}
-                <div>
+              {/* Right Side: Submitted Data */}
+              <div>
                   <h4 className="text-sm font-semibold text-neon flex items-center gap-2 mb-6">
                     <FileText className="h-4 w-4" /> Submitted Details
                   </h4>
