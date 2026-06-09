@@ -160,9 +160,7 @@ function TrackPage() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                {/* Left Side: Progress & Admin Updates */}
-                <div className="flex flex-col gap-10">
-                {/* Top: Progress */}
+                {/* Left Side: Progress */}
                 <div className="relative py-4">
                   {/* Connecting Line */}
                   <div className="absolute left-[27px] top-4 bottom-4 w-0.5 bg-white/5"></div>
@@ -190,9 +188,10 @@ function TrackPage() {
                     />
                   </div>
                 </div>
-
-                {/* Bottom: Updates */}
-                <div className="border-t border-white/10 pt-8">
+                
+                {/* Right Side: Admin Updates & Submitted Data */}
+                <div className="flex flex-col gap-10">
+                  {/* Top: Updates */}
                   {(result.adminMessage || result.attachedMedia) && (
                     <div className="space-y-6 animate-fade-up" style={{ animationDelay: '0.2s' }}>
                       <h4 className="text-sm font-semibold text-neon flex items-center gap-2">
@@ -222,14 +221,12 @@ function TrackPage() {
                       )}
                     </div>
                   )}
-                </div>
-              </div>
-                
-              {/* Right Side: Submitted Data */}
-              <div>
-                  <h4 className="text-sm font-semibold text-neon flex items-center gap-2 mb-6">
-                    <FileText className="h-4 w-4" /> Submitted Details
-                  </h4>
+
+                  {/* Bottom: Submitted Data */}
+                  <div>
+                    <h4 className="text-sm font-semibold text-neon flex items-center gap-2 mb-6">
+                      <FileText className="h-4 w-4" /> Submitted Details
+                    </h4>
                   {result.data ? (
                     <div className="bg-white/5 border border-white/10 rounded-xl p-5 grid gap-5 sm:grid-cols-2">
                       {Object.entries(result.data).map(([k, v]) => {
