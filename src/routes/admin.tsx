@@ -1606,26 +1606,27 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                   <div className="flex flex-col gap-1.5">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Update Status</span>
                     <div className="relative">
-                      <select 
+                      <input
+                        list="status-options"
                         value={selectedSubmission.status || "Pending"}
                         onChange={(e) => {
                           const newStatus = e.target.value;
                           update(ref(db, `user_submissions/${selectedSubmission.id}`), { status: newStatus });
                           setSelectedSubmission({...selectedSubmission, status: newStatus});
                         }}
-                        className={`appearance-none cursor-pointer text-sm font-bold pl-3 pr-8 py-2.5 rounded-lg border outline-none w-full shadow-sm transition-all text-center ${
+                        placeholder="Type custom status..."
+                        className={`text-sm font-bold px-3 py-2.5 rounded-lg border outline-none w-full shadow-sm transition-all text-center ${
                           selectedSubmission.status === 'Completed' ? 'bg-green-50 text-green-800 border-green-300' :
                           selectedSubmission.status === 'Processing' ? 'bg-blue-50 text-blue-800 border-blue-300' :
-                          'bg-yellow-50 text-yellow-800 border-yellow-300'
+                          ['Pending', ''].includes(selectedSubmission.status || 'Pending') ? 'bg-yellow-50 text-yellow-800 border-yellow-300' :
+                          'bg-purple-50 text-purple-800 border-purple-300'
                         }`}
-                      >
-                        <option className="bg-white text-black font-medium" value="Pending">Pending</option>
-                        <option className="bg-white text-black font-medium" value="Processing">Processing</option>
-                        <option className="bg-white text-black font-medium" value="Completed">Completed</option>
-                      </select>
-                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-slate-500">
-                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                      </div>
+                      />
+                      <datalist id="status-options">
+                        <option value="Pending" />
+                        <option value="Processing" />
+                        <option value="Completed" />
+                      </datalist>
                     </div>
                   </div>
 

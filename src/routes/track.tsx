@@ -159,8 +159,8 @@ function TrackPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                {/* Left: Progress */}
+              <div className="flex flex-col gap-10">
+                {/* Top: Progress */}
                 <div className="relative py-4">
                   {/* Connecting Line */}
                   <div className="absolute left-[27px] top-4 bottom-4 w-0.5 bg-white/5"></div>
@@ -189,8 +189,8 @@ function TrackPage() {
                   </div>
                 </div>
 
-                {/* Right: Updates */}
-                <div>
+                {/* Bottom: Updates */}
+                <div className="border-t border-white/10 pt-8">
                   {(result.adminMessage || result.attachedMedia) ? (
                     <div className="space-y-6 animate-fade-up" style={{ animationDelay: '0.2s' }}>
                       <h4 className="text-sm font-semibold text-neon flex items-center gap-2">
@@ -218,11 +218,6 @@ function TrackPage() {
                           )}
                         </div>
                       )}
-                    </div>
-                  ) : (
-                    <div className="flex flex-col items-center justify-center text-center p-8 bg-white/5 rounded-xl border border-white/10 h-full min-h-[200px]">
-                      <MessageSquare className="h-8 w-8 text-muted-foreground/30 mb-3" />
-                      <p className="text-sm text-muted-foreground">No updates from admin yet.</p>
                     </div>
                   )}
                 </div>
