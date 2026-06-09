@@ -191,7 +191,7 @@ function TrackPage() {
 
                 {/* Bottom: Updates */}
                 <div className="border-t border-white/10 pt-8">
-                  {(result.adminMessage || result.attachedMedia) ? (
+                  {(result.adminMessage || result.attachedMedia) && (
                     <div className="space-y-6 animate-fade-up" style={{ animationDelay: '0.2s' }}>
                       <h4 className="text-sm font-semibold text-neon flex items-center gap-2">
                         <MessageSquare className="h-4 w-4" /> Updates from Admin
